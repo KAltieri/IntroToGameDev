@@ -9,11 +9,14 @@ public class AxleInfo {
 	public bool motor;
 	public bool steering;
 }
-
+	
 public class SimpleCarController : MonoBehaviour {
 	public List<AxleInfo> axleInfos; 
 	public float maxMotorTorque;
 	public float maxSteeringAngle;
+	public float xRotationLimit;
+	public float yRotationLimit;
+	public float zRotationLimit;
 
 	// finds the corresponding visual wheel
 	// correctly applies the transform
@@ -55,5 +58,18 @@ public class SimpleCarController : MonoBehaviour {
 			ApplyLocalPositionToVisuals(axleInfo.leftWheel);
 			ApplyLocalPositionToVisuals(axleInfo.rightWheel);
 		}
+
+		if(transform.rotation.eulerAngles.x > xRotationLimit)
+		{
+			transform.rotation = Quaternion.identity;
+		}
+		if(transform.rotation.eulerAngles.y > yRotationLimit){
+			transform.rotation = Quaternion.identity;
+		}
+
+		if(transform.rotation.eulerAngles.z > zRotationLimit){
+			transform.rotation = Quaternion.identity;
+		}
+
 	}
 }
