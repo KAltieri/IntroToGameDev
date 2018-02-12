@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Lance
   - Collider
+  - Outer
   layers:
   - Default
   - TransparentFX
