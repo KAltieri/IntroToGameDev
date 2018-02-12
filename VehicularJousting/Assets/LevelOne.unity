@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -403,7 +403,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4349079165176392, guid: 3acf555bfaeca48a89247bda25b306be, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 2.08
+      value: 10.59
       objectReference: {fileID: 0}
     - target: {fileID: 4349079165176392, guid: 3acf555bfaeca48a89247bda25b306be, type: 2}
       propertyPath: m_LocalRotation.x
@@ -535,6 +535,11 @@ Prefab:
         type: 2}
       propertyPath: maxSteeringAngle
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 54639910199641814, guid: 3acf555bfaeca48a89247bda25b306be,
+        type: 2}
+      propertyPath: m_Constraints
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3acf555bfaeca48a89247bda25b306be, type: 2}
