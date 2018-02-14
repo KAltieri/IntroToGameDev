@@ -7,6 +7,7 @@ public class LanceScript : MonoBehaviour
 {
     public float speed;
     Vector3 mousePos;
+	public GameObject carObj;
 
     void Start()
     {
@@ -14,7 +15,8 @@ public class LanceScript : MonoBehaviour
 
     void Update()
     {
-        Vector3 pos = transform.position;
+		Vector3 car = carObj.transform.position;
+		Vector3 pos = new Vector3 (car.x - 1f, car.y + 1f, car.z + 1f);
         mousePos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
 
         Quaternion temp = Quaternion.Euler((mousePos.y) * speed, (-1*mousePos.x) * speed, mousePos.z * speed);
@@ -24,14 +26,20 @@ public class LanceScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag.Equals("Outer"))
-        {
-            Debug.Log("1 point");
-            print("hi");
-        }
-        else if(collision.gameObject.tag.Equals("Inner"))
-        {
-            Debug.Log("5 point");
-        }
+		if (collision.gameObject.tag.Equals ("Outer")) 
+		{
+			Debug.Log ("1 point");
+			Destroy (collision.transform.parent.gameObject);
+		} 
+		else if (collision.gameObject.tag.Equals ("Inner")) 
+		{
+			Debug.Log ("5 point");
+			Destroy (collision.transform.parent.gameObject);
+		}
+		else if (collision.gameObject.tag.Equals ("Perfect")) 
+		{
+			Debug.Log ("10 point");
+			Destroy (collision.transform.parent.gameObject);
+		}
     }
 }

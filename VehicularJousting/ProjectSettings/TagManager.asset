@@ -7,6 +7,8 @@ TagManager:
   - Lance
   - Collider
   - Outer
+  - Inner
+  - Perfect
   layers:
   - Default
   - TransparentFX
