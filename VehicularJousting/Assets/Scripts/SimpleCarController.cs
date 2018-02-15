@@ -39,12 +39,41 @@ public class SimpleCarController : MonoBehaviour {
 		visualWheel.transform.rotation = rotation;
 	}
 
+    float accelTime;
 	public void FixedUpdate()
 	{
         //motor is the torque times the input axis, steering is steering angle times the input axis
-		float motor = maxMotorTorque * Input.GetAxis("Vertical");
-		float steering = maxSteeringAngle * Input.GetAxis("Horizontal");
+		float motor = maxMotorTorque * Input.GetAxis("Vertical") * 2;
+		float steering = maxSteeringAngle * Input.GetAxis("Horizontal") * 2;
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            accelTime = Time.time;
+        }
+        if (Input.GetKey(KeyCode.W))
+        {
+            if (Time.time - accelTime > 15)
+            {
+                motor *= 10000000f;
+            }
+            if (Time.time - accelTime > 10)
+            {
+                motor *= 1000000f;
+            }
+            if (Time.time - accelTime > 7)
+            {
+                motor *= 100000f;
+            }
+            if (Time.time - accelTime > 5)
+            {
+                motor *= 10000f;
+            }
+            if (Time.time - accelTime > 3)
+            {
+                motor *= 1000f;
+            }
+        }
 
+        print(motor);
         //makes it so both wheels turn and run at the same speeds
 		foreach (AxleInfo axleInfo in axleInfos) {
 			if (axleInfo.steering) {
@@ -66,7 +95,6 @@ public class SimpleCarController : MonoBehaviour {
 		if(transform.rotation.eulerAngles.y > yRotationLimit){
 			transform.rotation = Quaternion.identity;
 		}
-
 		if(transform.rotation.eulerAngles.z > zRotationLimit){
 			transform.rotation = Quaternion.identity;
 		}
