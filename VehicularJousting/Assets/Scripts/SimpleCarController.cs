@@ -39,14 +39,45 @@ public class SimpleCarController : MonoBehaviour {
 		visualWheel.transform.rotation = rotation;
 	}
 
-	public void FixedUpdate()
+    float accelTime;
+    public void FixedUpdate()
 	{
         //motor is the torque times the input axis, steering is steering angle times the input axis
+
 		float motor = maxMotorTorque * Input.GetAxis("Vertical");
 		float steering = maxSteeringAngle * Input.GetAxis("Horizontal");
 
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            accelTime = Time.time;
+
+        }
+        if (Input.GetKey(KeyCode.W))
+        {
+            if (Time.time - accelTime > 15)
+            {
+                //print("15");
+            }
+            else if (Time.time - accelTime > 10)
+            {
+                //print("10");
+            }
+            else if (Time.time - accelTime > 7)
+            {
+                //print("7");
+            }
+            else if (Time.time - accelTime > 5)
+            {
+                //print("5");
+            }
+            else if (Time.time - accelTime > 3)
+            {
+                //print("3");
+            }
+        }
+
         //makes it so both wheels turn and run at the same speeds
-		foreach (AxleInfo axleInfo in axleInfos) {
+        foreach (AxleInfo axleInfo in axleInfos) {
 			if (axleInfo.steering) {
 				axleInfo.leftWheel.steerAngle = steering;
 				axleInfo.rightWheel.steerAngle = steering;
@@ -61,15 +92,20 @@ public class SimpleCarController : MonoBehaviour {
 
 		if(transform.rotation.eulerAngles.x > xRotationLimit)
 		{
+            //transform.rotation = Quaternion.Euler(new Vector3(xRotationLimit, transform.rotation.y, transform.rotation.z));           
 			transform.rotation = Quaternion.identity;
 		}
-		if(transform.rotation.eulerAngles.y > yRotationLimit){
-			transform.rotation = Quaternion.identity;
-		}
+		if(transform.rotation.eulerAngles.y > yRotationLimit)
+        {
+            //transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.x, yRotationLimit, transform.rotation.z));
+            transform.rotation = Quaternion.identity;
+        }
 
-		if(transform.rotation.eulerAngles.z > zRotationLimit){
-			transform.rotation = Quaternion.identity;
-		}
+        if (transform.rotation.eulerAngles.z > zRotationLimit)
+        {
+            //transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.x, transform.rotation.y, zRotationLimit));
+            transform.rotation = Quaternion.identity;
+        }
 
-	}
+    }
 }

@@ -24,22 +24,26 @@ public class LanceScript : MonoBehaviour
         transform.SetPositionAndRotation(pos, temp);
     }
 
+    float timePast;
     private void OnCollisionEnter(Collision collision)
     {
 		if (collision.gameObject.tag.Equals ("Outer")) 
 		{
-			Debug.Log ("1 point");
-			Destroy (collision.transform.parent.gameObject);
+            Destroy(collision.transform.parent.gameObject);
+            Debug.Log ("1 point");
+            return;
 		} 
 		else if (collision.gameObject.tag.Equals ("Inner")) 
 		{
-			Debug.Log ("5 point");
-			Destroy (collision.transform.parent.gameObject);
+            Destroy(collision.transform.parent.gameObject);
+            Debug.Log ("5 point");
+            return;
 		}
 		else if (collision.gameObject.tag.Equals ("Perfect")) 
 		{
-			Debug.Log ("10 point");
-			Destroy (collision.transform.parent.gameObject);
+            Destroy(collision.transform.parent.gameObject);
+            Debug.Log ("10 point");
+            return;
 		}
     }
 }
