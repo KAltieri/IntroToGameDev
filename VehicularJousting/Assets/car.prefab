@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 54639910199641814}
   - component: {fileID: 114458568058235444}
   m_Layer: 0
-  m_Name: car_root
+  m_Name: car
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -312,6 +312,9 @@ MonoBehaviour:
     steering: 0
   maxMotorTorque: 400
   maxSteeringAngle: 30
+  xRotationLimit: 0
+  yRotationLimit: 0
+  zRotationLimit: 0
 --- !u!146 &146322976613531242
 WheelCollider:
   m_ObjectHideFlags: 1
