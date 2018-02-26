@@ -9,6 +9,7 @@ TagManager:
   - Outer
   - Inner
   - Perfect
+  - Car
   layers:
   - Default
   - TransparentFX

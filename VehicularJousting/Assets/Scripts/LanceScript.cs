@@ -2,12 +2,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LanceScript : MonoBehaviour
 {
     public float speed;
-    Vector3 mousePos;
-	public GameObject carObj;
+    public GameObject carObj;
+    public Camera cam;
+    public float allotedTime = 600;
+    public int targetScore = 50;
+    float currentScore = 0;
+
+    public Text timeText;
+    public Text pointText;
+    public float endTime;
+    public float endScore;
 
     void Start()
     {
@@ -15,35 +25,57 @@ public class LanceScript : MonoBehaviour
 
     void Update()
     {
-		Vector3 car = carObj.transform.position;
-		Vector3 pos = new Vector3 (car.x - 1f, car.y + 1f, car.z + 1f);
-        mousePos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+        Vector3 car = carObj.transform.position;
+        Quaternion carQuat = carObj.transform.rotation;
+        Vector3 pos = new Vector3(car.x - 1, car.y - .35f, car.z + 3.85f);
+        Vector3 mousePos = cam.ScreenToViewportPoint(Input.mousePosition);
+        Vector3 carAngle = carQuat.eulerAngles;
 
-        Quaternion temp = Quaternion.Euler((mousePos.y) * speed, (-1*mousePos.x) * speed, mousePos.z * speed);
+        Quaternion temp = Quaternion.Euler(((mousePos.y * speed) + carAngle.x), (((-1 * mousePos.x) * speed) + carAngle.y), ((mousePos.z * speed) + carAngle.z));
         //Quaternion temp = Quaternion.Euler(new Vector3(transform.rotation.x + (mousePos.y*speed), transform.position.y + (mousePos.x*speed), transform.position.y + (mousePos.z * speed)));
         transform.SetPositionAndRotation(pos, temp);
+        Debug.Log(currentScore);
+        scoreBoard();
     }
 
-    float timePast;
     private void OnCollisionEnter(Collision collision)
     {
-		if (collision.gameObject.tag.Equals ("Outer")) 
-		{
+        if (collision.gameObject.tag.Equals("Outer"))
+        {
             Destroy(collision.transform.parent.gameObject);
-            Debug.Log ("1 point");
+            currentScore++;
             return;
-		} 
-		else if (collision.gameObject.tag.Equals ("Inner")) 
-		{
+        }
+        else if (collision.gameObject.tag.Equals("Inner"))
+        {
             Destroy(collision.transform.parent.gameObject);
-            Debug.Log ("5 point");
+            currentScore += 5;
             return;
-		}
-		else if (collision.gameObject.tag.Equals ("Perfect")) 
-		{
+        }
+        else if (collision.gameObject.tag.Equals("Perfect"))
+        {
             Destroy(collision.transform.parent.gameObject);
-            Debug.Log ("10 point");
+            currentScore += 10;
             return;
-		}
+        }
+    }
+
+    void scoreBoard()
+    {
+        float time = Mathf.RoundToInt(Time.timeSinceLevelLoad);
+        timeText.text = "Time Left: " + (endTime - time);
+        pointText.text = "Points: " + currentScore;
+        if(currentScore > endScore)
+        {
+            pointText.text = "YOU WIN!!!";
+        }
+    }
+
+    void quitGame()
+    {
+        if(Time.timeSinceLevelLoad > endTime)
+        {
+            Application.Quit();
+        }
     }
 }
