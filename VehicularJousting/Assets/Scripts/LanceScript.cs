@@ -27,12 +27,20 @@ public class LanceScript : MonoBehaviour
     {
         Vector3 car = carObj.transform.position;
         Quaternion carQuat = carObj.transform.rotation;
+<<<<<<< Updated upstream
         Vector3 pos = new Vector3(car.x - .75f, car.y - .35f, car.z + 3.85f);
+=======
+        Vector3 pos = new Vector3(car.x - .5f, car.y - .35f, car.z + 3.85f);
+>>>>>>> Stashed changes
         Vector3 mousePos = (Input.mousePosition);
         Vector3 editMouse = new Vector3(mousePos.x / 100, mousePos.y / 100);
         Vector3 carAngle = carQuat.eulerAngles;
 
+<<<<<<< Updated upstream
         Quaternion temp = Quaternion.Euler((((-1 * editMouse.y) * speed) + carAngle.x), (((-1 * editMouse.x) * speed) + carAngle.y), ((editMouse.z * speed) + carAngle.z));
+=======
+        Quaternion temp = Quaternion.Euler((((-1*editMouse.y) * speed) + carAngle.x), (((-1 * editMouse.x) * speed) + carAngle.y), ((editMouse.z * speed) + carAngle.z));
+>>>>>>> Stashed changes
         //Quaternion temp = Quaternion.Euler(new Vector3(transform.rotation.x + (mousePos.y*speed), transform.position.y + (mousePos.x*speed), transform.position.y + (mousePos.z * speed)));
         transform.SetPositionAndRotation(pos, temp);
         scoreBoard();
