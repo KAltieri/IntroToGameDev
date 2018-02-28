@@ -27,14 +27,14 @@ public class LanceScript : MonoBehaviour
     {
         Vector3 car = carObj.transform.position;
         Quaternion carQuat = carObj.transform.rotation;
-        Vector3 pos = new Vector3(car.x - 1, car.y - .35f, car.z + 3.85f);
-        Vector3 mousePos = cam.ScreenToViewportPoint(Input.mousePosition);
+        Vector3 pos = new Vector3(car.x - .75f, car.y - .35f, car.z + 3.85f);
+        Vector3 mousePos = (Input.mousePosition);
+        Vector3 editMouse = new Vector3(mousePos.x / 100, mousePos.y / 100);
         Vector3 carAngle = carQuat.eulerAngles;
 
-        Quaternion temp = Quaternion.Euler(((mousePos.y * speed) + carAngle.x), (((-1 * mousePos.x) * speed) + carAngle.y), ((mousePos.z * speed) + carAngle.z));
+        Quaternion temp = Quaternion.Euler((((-1 * editMouse.y) * speed) + carAngle.x), (((-1 * editMouse.x) * speed) + carAngle.y), ((editMouse.z * speed) + carAngle.z));
         //Quaternion temp = Quaternion.Euler(new Vector3(transform.rotation.x + (mousePos.y*speed), transform.position.y + (mousePos.x*speed), transform.position.y + (mousePos.z * speed)));
         transform.SetPositionAndRotation(pos, temp);
-        Debug.Log(currentScore);
         scoreBoard();
     }
 
@@ -65,7 +65,7 @@ public class LanceScript : MonoBehaviour
         float time = Mathf.RoundToInt(Time.timeSinceLevelLoad);
         timeText.text = "Time Left: " + (endTime - time);
         pointText.text = "Points: " + currentScore;
-        if(currentScore > endScore)
+        if (currentScore > endScore)
         {
             pointText.text = "YOU WIN!!!";
         }
@@ -73,7 +73,7 @@ public class LanceScript : MonoBehaviour
 
     void quitGame()
     {
-        if(Time.timeSinceLevelLoad > endTime)
+        if (Time.timeSinceLevelLoad > endTime)
         {
             Application.Quit();
         }
