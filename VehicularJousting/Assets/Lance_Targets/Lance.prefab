@@ -126,3 +126,9 @@ MonoBehaviour:
   speed: 50
   carObj: {fileID: 0}
   cam: {fileID: 0}
+  allotedTime: 600
+  targetScore: 50
+  timeText: {fileID: 0}
+  pointText: {fileID: 0}
+  endTime: 0
+  endScore: 0

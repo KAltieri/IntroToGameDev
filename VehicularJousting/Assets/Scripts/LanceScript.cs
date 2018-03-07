@@ -27,14 +27,21 @@ public class LanceScript : MonoBehaviour
     {
         Vector3 car = carObj.transform.position;
         Quaternion carQuat = carObj.transform.rotation;
+		//set Pos and Quat equal to the LancePos Game Object
         Vector3 pos = new Vector3(car.x - .75f, car.y - .35f, car.z + 3.85f);
         Vector3 mousePos = (Input.mousePosition);
         Vector3 editMouse = new Vector3(mousePos.x / 100, mousePos.y / 100);
         Vector3 carAngle = carQuat.eulerAngles;
 
         Quaternion temp = Quaternion.Euler((((-1 * editMouse.y) * speed) + carAngle.x), (((-1 * editMouse.x) * speed) + carAngle.y), ((editMouse.z * speed) + carAngle.z));
-        //Quaternion temp = Quaternion.Euler(new Vector3(transform.rotation.x + (mousePos.y*speed), transform.position.y + (mousePos.x*speed), transform.position.y + (mousePos.z * speed)));
-        transform.SetPositionAndRotation(pos, temp);
+        
+		//Quaternion temp = Quaternion.Euler(new Vector3(transform.rotation.x + (mousePos.y*speed), transform.position.y + (mousePos.x*speed), transform.position.y + (mousePos.z * speed)));
+        //clamp mouse rotation to be a cone
+		//prevent it from moving around excessively
+		//mouse control affects the lance Position 
+		//Use transform.local position - clamp x and y position and control them with floats
+
+		transform.SetPositionAndRotation(pos, temp);
         scoreBoard();
     }
 
