@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4484282, g: 0.49846345, b: 0.5756292, a: 1}
+  m_IndirectSpecularColor: {r: 0.44842845, g: 0.49846393, b: 0.5756296, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -441,6 +441,23 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 61beed75177ee0548852879a2064e809, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &251663935 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1176281289727214, guid: 61beed75177ee0548852879a2064e809,
+    type: 2}
+  m_PrefabInternal: {fileID: 251663934}
+--- !u!114 &251663936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 251663935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db7deada1d71bbe429c59b56172a449c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  follow: {fileID: 1054856171}
 --- !u!1001 &264326653
 Prefab:
   m_ObjectHideFlags: 0
@@ -2642,6 +2659,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1054856172}
+  - component: {fileID: 1054856173}
   m_Layer: 8
   m_Name: LancePositionTarget
   m_TagString: Untagged
@@ -2656,12 +2674,24 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1054856171}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.87, y: -0.5, z: -0.122}
+  m_LocalPosition: {x: -1.35, y: -0.358, z: 0.321}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 917952808}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1054856173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1054856171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42c23fd0cdfbeb74bb243b02482150d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
 --- !u!1001 &1105736669
 Prefab:
   m_ObjectHideFlags: 0
