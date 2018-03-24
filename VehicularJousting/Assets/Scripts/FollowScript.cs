@@ -12,6 +12,6 @@ public class FollowScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.SetPositionAndRotation(follow.GetComponent<Transform>().position, follow.GetComponent<Transform>().rotation);
+		transform.SetPositionAndRotation(follow.transform.position, follow.transform.rotation);
 	}
 }
