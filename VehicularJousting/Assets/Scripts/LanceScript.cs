@@ -18,6 +18,9 @@ public class LanceScript : MonoBehaviour
     public Text pointText;
     public float endTime;
     public float endScore;
+    public AudioSource outer, inner, perfect;
+    float time, lastTime;
+    bool wait = false;
 
     void Start()
     {
@@ -50,20 +53,40 @@ public class LanceScript : MonoBehaviour
         if (collision.gameObject.tag.Equals("Outer"))
         {
             Destroy(collision.transform.parent.gameObject);
-            currentScore++;
-            return;
+            if (!wait)
+            {
+                currentScore++;
+                outer.Play();
+                lastTime = Time.time + .1f;
+                wait = true;
+            }
         }
         else if (collision.gameObject.tag.Equals("Inner"))
         {
             Destroy(collision.transform.parent.gameObject);
-            currentScore += 5;
-            return;
+            if (!wait)
+            {
+                currentScore += 5;
+                inner.Play();
+                lastTime = Time.time + .1f;
+                wait = true;
+            }
         }
         else if (collision.gameObject.tag.Equals("Perfect"))
         {
             Destroy(collision.transform.parent.gameObject);
-            currentScore += 10;
-            return;
+            if (!wait)
+            {
+                currentScore += 10;
+                perfect.Play();
+                lastTime = Time.time+.1f;
+                wait = true;
+            }
+        }
+        time = Time.time;
+        if(lastTime - time < .05f)
+        {
+            wait = true;
         }
     }
 

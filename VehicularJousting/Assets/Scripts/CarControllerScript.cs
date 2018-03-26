@@ -27,10 +27,16 @@ public class CarControllerScript : MonoBehaviour
     public float slipForwardFriction = .085f;
 
     Rigidbody rb;
+    int[] gearRatio = new int[5];
 
     // Use this for initialization
     void Start()
     {
+        for(int i = 0; i < gearRatio.Length; i++)
+        {
+            gearRatio[i] = 80 * (i+1);
+        }
+        gearRatio[4] = 510;
         rb = GetComponent<Rigidbody>();
         rb.centerOfMass = new Vector3(0, -0.9f, .5f);
         forwardFriction = wheelRR.forwardFriction.stiffness;
@@ -63,6 +69,7 @@ public class CarControllerScript : MonoBehaviour
         wheelFR.steerAngle = currentSteeringAngle;
         WheelPositioning();
         HandBrake();
+        EngineSound();
     }
 
     void WheelPositioning()
@@ -200,5 +207,31 @@ public class CarControllerScript : MonoBehaviour
         WheelFrictionCurve wSFL = wheelFL.forwardFriction;
         wSFL.stiffness = currentForwardFriction;
         wheelRL.forwardFriction = wSFL;
+    }
+
+    void EngineSound()
+    {
+        int gear = 0;
+        for (int i = 0; i < gearRatio.Length; i++)
+        {
+            if (gearRatio[i] > currentSpeed-10f)
+            {
+                gear = i;
+                break;
+            }
+        }
+        float minGearValue = 0f;
+        float maxGearValue = 0f;
+        if (gear == 0)
+        {
+            minGearValue = 0;
+        }
+        else
+        {
+            maxGearValue = gearRatio[gear - 1];
+        }
+        maxGearValue = gearRatio[gear];
+        float enginePitch = ((currentSpeed - minGearValue) / (maxGearValue - minGearValue)) + 1;
+        GetComponent<AudioSource>().pitch = enginePitch;
     }
 }
