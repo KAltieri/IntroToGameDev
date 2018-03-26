@@ -22061,7 +22061,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9dbccdfc3462e4cc2b80629787bb227f, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.48
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -26911,7 +26911,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1054856171}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.42, y: -0.358, z: 0.321}
+  m_LocalPosition: {x: -3.38, y: -0.358, z: 0.321}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 917952808}
@@ -49060,12 +49060,12 @@ Prefab:
     - target: {fileID: 114436102963058278, guid: 86780b242faedb0409320f578eafd947,
         type: 2}
       propertyPath: maxTorque
-      value: 500
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 114436102963058278, guid: 86780b242faedb0409320f578eafd947,
         type: 2}
       propertyPath: highestSpeed
-      value: 500
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 54770757902095228, guid: 86780b242faedb0409320f578eafd947,
         type: 2}

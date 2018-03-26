@@ -7,10 +7,10 @@ public class CarCameraScript : MonoBehaviour
 
     public Transform car;
     Rigidbody carRb;
-    float distance = 6.4f;
-    float height = 1.4f;
-    float rotationDamping = 3.0f;
-    float heightDamping = 2.0f;
+    float distance = 7.4f;
+    float height = 3f;
+    float rotationDamping = 3.5f;
+    float heightDamping = 2.5f;
     float zoomRatio = .5f;
     float DefaultFOV = 60f;
     private Vector3 rotationVector;
