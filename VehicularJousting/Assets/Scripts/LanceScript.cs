@@ -46,6 +46,11 @@ public class LanceScript : MonoBehaviour
 
 		//transform.SetPositionAndRotation(pos, temp);
         scoreBoard();
+		time = Time.time;
+		if(time - lastTime > .05f)
+		{
+			wait = false;
+		}
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -57,7 +62,7 @@ public class LanceScript : MonoBehaviour
             {
                 currentScore++;
                 outer.Play();
-                lastTime = Time.time + .1f;
+                lastTime = Time.time;
                 wait = true;
             }
         }
@@ -68,7 +73,7 @@ public class LanceScript : MonoBehaviour
             {
                 currentScore += 5;
                 inner.Play();
-                lastTime = Time.time + .1f;
+                lastTime = Time.time;
                 wait = true;
             }
         }
@@ -79,14 +84,14 @@ public class LanceScript : MonoBehaviour
             {
                 currentScore += 10;
                 perfect.Play();
-                lastTime = Time.time+.1f;
+                lastTime = Time.time;
                 wait = true;
             }
         }
         time = Time.time;
-        if(lastTime - time < .05f)
+        if(time - lastTime > .05f)
         {
-            wait = true;
+            wait = false;
         }
     }
 
