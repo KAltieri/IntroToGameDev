@@ -17,7 +17,7 @@ public class ChildLanceScript : MonoBehaviour {
         xRot += Input.GetAxis("Mouse Y") * speed;
 
 		yRot = Mathf.Clamp (yRot, -rangeInDeg, rangeInDeg);
-		xRot = Mathf.Clamp (xRot, -rangeInDeg, rangeInDeg);
+		xRot = Mathf.Clamp (xRot, -rangeInDeg, rangeInDeg/6);
 
         Quaternion moveAngle = Quaternion.Euler(xRot, yRot, 0);
 		//print (xRot + " " + yRot);
