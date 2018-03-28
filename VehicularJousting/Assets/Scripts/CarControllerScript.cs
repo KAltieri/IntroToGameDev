@@ -46,10 +46,8 @@ public class CarControllerScript : MonoBehaviour
         sidewaysFriction = wheelRR.sidewaysFriction.stiffness;
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-        currentSpeed = 2 * 22 / 7 * wheelRL.radius * wheelRL.rpm * 60 / 1000;
         wheelRR.motorTorque = maxTorque * Input.GetAxis("Vertical");
         wheelRL.motorTorque = maxTorque * Input.GetAxis("Vertical");
         if (!Input.GetButton("Vertical"))
@@ -62,15 +60,24 @@ public class CarControllerScript : MonoBehaviour
             wheelRR.brakeTorque = 0;
             wheelRL.brakeTorque = 0;
         }
-        float SpeedFactor = rb.velocity.magnitude / highestSpeed;
-        float currentSteeringAngle = Mathf.Lerp(lowSpeedTurnAngle, highSpeedTurnAngle, SpeedFactor);
-        currentSteeringAngle *= Input.GetAxis("Horizontal");
-        wheelFL.steerAngle = currentSteeringAngle;
-        wheelFR.steerAngle = currentSteeringAngle;
-        HandBrake();
-        EngineSound();
     }
 
+	// Update is called once per frame
+	void Update()
+	{
+		currentSpeed = 2 * 22 / 7 * wheelRL.radius * wheelRL.rpm * 60 / 1000;
+		float SpeedFactor = rb.velocity.magnitude / highestSpeed;
+		float currentSteeringAngle = Mathf.Lerp(lowSpeedTurnAngle, highSpeedTurnAngle, SpeedFactor);
+		currentSteeringAngle *= Input.GetAxis("Horizontal");
+		wheelFL.steerAngle = currentSteeringAngle;
+		wheelFR.steerAngle = currentSteeringAngle;
+
+		HandBrake ();
+		EngineSound ();
+		ReverseSlip ();
+	}
+
+	//acts like a brake for the car
     void HandBrake()
     {
         if (Input.GetButton("Jump"))
@@ -112,6 +119,7 @@ public class CarControllerScript : MonoBehaviour
         }
     }
 
+	//deals with friction values
     void ReverseSlip()
     {
         if (currentSpeed < 0)
@@ -120,40 +128,49 @@ public class CarControllerScript : MonoBehaviour
         }
         else
         {
-            SetFrontSlip(slipForwardFriction, slipSidewWayFriction);
+            SetFrontSlip(forwardFriction, sidewaysFriction);
         }
     }
 
+	//increases back wheel friction
     void SetRearSlip(float currentForwardFriction, float currentSidewayFriction)
     {
+		//Rear Right
         WheelFrictionCurve wFRR = wheelRR.forwardFriction;
         wFRR.stiffness = currentForwardFriction;
         wheelRR.forwardFriction = wFRR;
+
         WheelFrictionCurve wSRR = wheelRR.sidewaysFriction;
         wSRR.stiffness = currentSidewayFriction;
         wheelRR.forwardFriction = wSRR;
 
-
+		//Rear Left Tire
         WheelFrictionCurve wFRL = wheelRL.forwardFriction;
         wFRL.stiffness = currentForwardFriction;
         wheelRL.forwardFriction = wFRL;
+
         WheelFrictionCurve wSRL = wheelRL.forwardFriction;
         wSRL.stiffness = currentForwardFriction;
         wheelRL.forwardFriction = wSRL;
     }
+
+	//increases front wheel friction
     void SetFrontSlip(float currentForwardFriction, float currentSidewayFriction)
     {
+		//Front Right
         WheelFrictionCurve wFFR = wheelFR.forwardFriction;
         wFFR.stiffness = currentForwardFriction;
         wheelFR.forwardFriction = wFFR;
+
         WheelFrictionCurve wSFR = wheelFR.sidewaysFriction;
         wSFR.stiffness = currentSidewayFriction;
         wheelRR.forwardFriction = wSFR;
 
-
+		//Front Left
         WheelFrictionCurve wFFL = wheelFL.forwardFriction;
         wFFL.stiffness = currentForwardFriction;
         wheelRL.forwardFriction = wFFL;
+
         WheelFrictionCurve wSFL = wheelFL.forwardFriction;
         wSFL.stiffness = currentForwardFriction;
         wheelRL.forwardFriction = wSFL;
@@ -164,7 +181,7 @@ public class CarControllerScript : MonoBehaviour
         int gear = 0;
         for (int i = 0; i < gearRatio.Length; i++)
         {
-            if (gearRatio[i] > currentSpeed-10f)
+            if (gearRatio[i] > currentSpeed)
             {
                 gear = i;
                 break;
@@ -181,6 +198,8 @@ public class CarControllerScript : MonoBehaviour
             maxGearValue = gearRatio[gear - 1];
         }
         maxGearValue = gearRatio[gear];
+
+		//sets the pitch based on gear and speed
         float enginePitch = ((currentSpeed - minGearValue) / (maxGearValue - minGearValue)) + 1;
         GetComponent<AudioSource>().pitch = enginePitch;
     }
