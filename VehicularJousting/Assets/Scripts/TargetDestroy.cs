@@ -5,7 +5,8 @@ using UnityEngine;
 public class TargetDestroy : MonoBehaviour {
 
 	bool destroyTarget = false;
-	float timeToDestroy = 0f;
+	float time = 0f;
+	float timeDestroy = 5f;
 
 	// Use this for initialization
 	void Start () {
@@ -17,9 +18,9 @@ public class TargetDestroy : MonoBehaviour {
 	{
 		if (destroyTarget) 
 		{
-			timeToDestroy = Time.deltaTime;
-			if(timeToDestroy >= 5f)
+			if(Time.time - timeDestroy >= 5f)
 			{
+				Debug.Log ("yes");
 				destroyTarget = false;
 				Destroy(this);
 			}		
@@ -30,5 +31,6 @@ public class TargetDestroy : MonoBehaviour {
 	private void OnCollisionEnter(Collision collision)
 	{
 		destroyTarget = true;
+		timeDestroy = Time.time + 5f;
 	}
 }

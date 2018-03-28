@@ -26,12 +26,6 @@ public class LanceScript : MonoBehaviour
     void Update()
     {
         scoreBoard();
-		time = Time.deltaTime;
-		if(time > .05f)
-		{
-			wait = false;
-			time = 0f;
-		}
     }
 
     private void OnCollisionEnter(Collision collision)
