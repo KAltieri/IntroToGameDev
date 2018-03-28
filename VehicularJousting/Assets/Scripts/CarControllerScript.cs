@@ -29,6 +29,9 @@ public class CarControllerScript : MonoBehaviour
     Rigidbody rb;
     int[] gearRatio = new int[5];
 
+	bool readyToDestroy = false;
+	float destroyTimer = 0f;
+
     // Use this for initialization
     void Start()
     {
@@ -49,9 +52,6 @@ public class CarControllerScript : MonoBehaviour
         currentSpeed = 2 * 22 / 7 * wheelRL.radius * wheelRL.rpm * 60 / 1000;
         wheelRR.motorTorque = maxTorque * Input.GetAxis("Vertical");
         wheelRL.motorTorque = maxTorque * Input.GetAxis("Vertical");
-        //wheelFL.motorTorque = maxTorque * Input.GetAxis("Horizontal");
-        //wheelFL.motorTorque = maxTorque * Input.GetAxis("Horizontal");
-
         if (!Input.GetButton("Vertical"))
         {
             wheelRR.brakeTorque = decellerationSpeed;
@@ -62,8 +62,8 @@ public class CarControllerScript : MonoBehaviour
             wheelRR.brakeTorque = 0;
             wheelRL.brakeTorque = 0;
         }
-        var SpeedFactor = rb.velocity.magnitude / highestSpeed;
-        var currentSteeringAngle = Mathf.Lerp(lowSpeedTurnAngle, highSpeedTurnAngle, SpeedFactor);
+        float SpeedFactor = rb.velocity.magnitude / highestSpeed;
+        float currentSteeringAngle = Mathf.Lerp(lowSpeedTurnAngle, highSpeedTurnAngle, SpeedFactor);
         currentSteeringAngle *= Input.GetAxis("Horizontal");
         wheelFL.steerAngle = currentSteeringAngle;
         wheelFR.steerAngle = currentSteeringAngle;
@@ -75,8 +75,9 @@ public class CarControllerScript : MonoBehaviour
     void WheelPositioning()
     {
         RaycastHit hit;
-        Vector3 wheelPos;
-        //FL
+		Vector3 wheelPos;
+
+		//FL
         if (Physics.Raycast(wheelFL.transform.position, -wheelFL.transform.up, out hit, wheelFL.radius + wheelFL.suspensionDistance))
         {
             wheelPos = hit.point + wheelFL.transform.up * wheelFL.radius;
@@ -85,7 +86,6 @@ public class CarControllerScript : MonoBehaviour
         {
             wheelPos = wheelFL.transform.position - wheelFL.transform.up * wheelFL.suspensionDistance;
         }
-        //wheelFLTrans.position = wheelPos;
 
         //FR
         if (Physics.Raycast(wheelFR.transform.position, -wheelFR.transform.up, out hit, wheelFR.radius + wheelFR.suspensionDistance))
@@ -96,7 +96,6 @@ public class CarControllerScript : MonoBehaviour
         {
             wheelPos = wheelFR.transform.position - wheelFR.transform.up * wheelFR.suspensionDistance;
         }
-        //wheelFRTrans.position = wheelPos;
 
         //RL
         if (Physics.Raycast(wheelRL.transform.position, -wheelRL.transform.up, out hit, wheelRL.radius + wheelRL.suspensionDistance))
@@ -107,7 +106,6 @@ public class CarControllerScript : MonoBehaviour
         {
             wheelPos = wheelRL.transform.position - wheelRL.transform.up * wheelRL.suspensionDistance;
         }
-        //wheelRLTrans.position = wheelPos;
 
         //RR
         if (Physics.Raycast(wheelRR.transform.position, -wheelRR.transform.up, out hit, wheelRR.radius + wheelRR.suspensionDistance))
@@ -118,7 +116,6 @@ public class CarControllerScript : MonoBehaviour
         {
             wheelPos = wheelRR.transform.position - wheelRR.transform.up * wheelRR.suspensionDistance;
         }
-        //wheelRRTrans.position = wheelPos;
     }
 
     void HandBrake()
@@ -139,7 +136,7 @@ public class CarControllerScript : MonoBehaviour
                 wheelFL.brakeTorque = maxBrakeTorque;
                 wheelRR.motorTorque = 0;
                 wheelRL.motorTorque = 0;
-                //SetRearSlip(slipForwardFriction, slipSidewayFriction);
+				SetRearSlip(slipForwardFriction, slipSidewWayFriction);
             }
             else if (currentSpeed < 0)
             {
@@ -147,18 +144,18 @@ public class CarControllerScript : MonoBehaviour
                 wheelRL.brakeTorque = maxBrakeTorque;
                 wheelRR.motorTorque = 0;
                 wheelRL.motorTorque = 0;
-                //SetRearSlip(1, 1);
+                SetRearSlip(1, 1);
             }
             else
             {
-                //SetRearSlip(1, 1);
+                SetRearSlip(1, 1);
             }
         }
         else
         {
             wheelFR.brakeTorque = 0;
             wheelFL.brakeTorque = 0;
-            //SetRearSlip(myForwardFriction, mySidewayFriction);
+			SetRearSlip(forwardFriction, sidewaysFriction);
         }
     }
 

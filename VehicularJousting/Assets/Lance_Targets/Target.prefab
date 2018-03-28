@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4333884131910628}
   - component: {fileID: 54013641914330894}
+  - component: {fileID: 114399020656026888}
   m_Layer: 0
   m_Name: Target
   m_TagString: Collider
@@ -36,7 +37,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4538927071232066}
   - component: {fileID: 65684202110686746}
-  - component: {fileID: 54416306614685754}
   m_Layer: 10
   m_Name: Outer
   m_TagString: Outer
@@ -53,7 +53,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4670775600285046}
   - component: {fileID: 65269362924072856}
-  - component: {fileID: 54594452030244242}
   m_Layer: 10
   m_Name: Inner
   m_TagString: Inner
@@ -87,7 +86,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4025553334046482}
   - component: {fileID: 65716774709311474}
-  - component: {fileID: 54854254067279612}
   m_Layer: 10
   m_Name: Perfect
   m_TagString: Perfect
@@ -222,51 +220,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!54 &54416306614685754
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1100264384787912}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
---- !u!54 &54594452030244242
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1241582776677142}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
---- !u!54 &54854254067279612
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1719483258349864}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!65 &65269362924072856
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -303,3 +256,14 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.717598, y: 1.8087664, z: 30145.617}
   m_Center: {x: -0.07303238, y: -0.101967335, z: 7202.8403}
+--- !u!114 &114399020656026888
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1032575265463258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bee7cd0b3fd94402881c9e0156ce2ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

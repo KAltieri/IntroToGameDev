@@ -7,9 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class LanceScript : MonoBehaviour
 {
-    //public float speed;
-    //public GameObject carObj;
-    //public Camera cam;
     public float allotedTime = 600;
     public int targetScore = 50;
     float currentScore = 0;
@@ -28,23 +25,6 @@ public class LanceScript : MonoBehaviour
 
     void Update()
     {
-  //      Vector3 car = carObj.transform.position;
-  //      Quaternion carQuat = carObj.transform.rotation;
-		////set Pos and Quat equal to the LancePos Game Object
-  //      Vector3 pos = new Vector3(car.x - .75f, car.y - .35f, car.z + 3.85f);
-  //      Vector3 mousePos = (Input.mousePosition);
-  //      Vector3 editMouse = new Vector3(mousePos.x / 100, mousePos.y / 100);
-  //      Vector3 carAngle = carQuat.eulerAngles;
-
-  //      Quaternion temp = Quaternion.Euler((((-1 * editMouse.y) * speed) + carAngle.x), (((-1 * editMouse.x) * speed) + carAngle.y), ((editMouse.z * speed) + carAngle.z));
-        
-		////Quaternion temp = Quaternion.Euler(new Vector3(transform.rotation.x + (mousePos.y*speed), transform.position.y + (mousePos.x*speed), transform.position.y + (mousePos.z * speed)));
-  //      //clamp mouse rotation to be a cone
-		////prevent it from moving around excessively
-		////mouse control affects the lance Position 
-		////Use transform.local position - clamp x and y position and control them with floats
-
-		//transform.SetPositionAndRotation(pos, temp);
         scoreBoard();
 		time = Time.time;
 		if(time - lastTime > .05f)
@@ -55,9 +35,9 @@ public class LanceScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag.Equals("Outer"))
+		if (collision.collider.tag == "Outer")
         {
-            Destroy(collision.transform.parent.gameObject);
+            Destroy(collision.gameObject);
             if (!wait)
             {
                 currentScore++;
@@ -66,9 +46,9 @@ public class LanceScript : MonoBehaviour
                 wait = true;
             }
         }
-        else if (collision.gameObject.tag.Equals("Inner"))
+        else if (collision.collider.tag == "Inner")
         {
-            Destroy(collision.transform.parent.gameObject);
+            Destroy(collision.gameObject);
             if (!wait)
             {
                 currentScore += 5;
@@ -77,9 +57,9 @@ public class LanceScript : MonoBehaviour
                 wait = true;
             }
         }
-        else if (collision.gameObject.tag.Equals("Perfect"))
+		else if (collision.collider.tag == "Perfect")
         {
-            Destroy(collision.transform.parent.gameObject);
+            Destroy(collision.gameObject);
             if (!wait)
             {
                 currentScore += 10;

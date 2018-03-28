@@ -21,34 +21,39 @@ public class CarCameraScript : MonoBehaviour
         carRb = car.GetComponent<Rigidbody>();
     }
 
-void LateUpdate()
+	void FixedUpdate()
+	{
+		//rotates the camera if the car is moving backwards or forwards
+		Vector3 localVelocity = car.InverseTransformDirection(carRb.velocity);
+		if (localVelocity.z < -0.5)
+		{
+			rotationVector.y = car.eulerAngles.y + 180;
+		}
+		else
+		{
+			rotationVector.y = car.eulerAngles.y;
+		}
+
+		//zooms out as the car goes faster
+		var acc = carRb.velocity.magnitude;
+		GetComponent<Camera>().fieldOfView = DefaultFOV + (acc * zoomRatio);
+	}
+
+	void LateUpdate()
     {
-        var wantedAngle = rotationVector.y;
-        var wantedHeight = car.position.y + height;
-        var myAngle = transform.eulerAngles.y;
-        var myHeight = transform.position.y;
+        float wantedAngle = rotationVector.y;
+        float wantedHeight = car.position.y + height;
+        float myAngle = transform.eulerAngles.y;
+        float myHeight = transform.position.y;
+
+		//moves the camera as the car moves along
         myAngle = Mathf.LerpAngle(myAngle, wantedAngle, rotationDamping * Time.deltaTime);
         myHeight = Mathf.Lerp(myHeight, wantedHeight, heightDamping * Time.deltaTime);
-        var currentRotation = Quaternion.Euler(0, myAngle, 0);
+        Quaternion currentRotation = Quaternion.Euler(0, myAngle, 0);
         transform.position = car.position;
-        transform.position -= currentRotation * Vector3.forward * distance;
+		transform.position -= currentRotation * (Vector3.forward * distance);
         Vector3 temp = transform.position;
         transform.position = new Vector3(temp.x, myHeight, temp.z);
         transform.LookAt(car);
     }
-    void FixedUpdate()
-    {
-        var localVilocity = car.InverseTransformDirection(carRb.velocity);
-        if (localVilocity.z < -0.5)
-        {
-            rotationVector.y = car.eulerAngles.y + 180;
-        }
-        else
-        {
-            rotationVector.y = car.eulerAngles.y;
-        }
-        var acc = carRb.velocity.magnitude;
-        GetComponent<Camera>().fieldOfView = DefaultFOV + acc * zoomRatio;
-    }
-
 }

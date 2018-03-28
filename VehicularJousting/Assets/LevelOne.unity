@@ -10662,9 +10662,9 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 0
   m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 2
 --- !u!114 &399187853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14465,7 +14465,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 520018551}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 741dd9ba966eb4ddd9ee995bd1c1c93b, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -15720,7 +15720,14 @@ Prefab:
       propertyPath: m_IsKinematic
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1032575265463258, guid: d13af32eaaf274d19acb057ce762983a, type: 2}
+      propertyPath: m_TagString
+      value: Collider
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: d13af32eaaf274d19acb057ce762983a, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &580750567
@@ -22651,28 +22658,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5e3397a8e508adc4bb5c781227968552, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &917952806 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1526025049710064, guid: 79ec6043c2eb88a4a8d8e107655c917d,
-    type: 2}
-  m_PrefabInternal: {fileID: 1177198971}
 --- !u!4 &917952808 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4683133012948984, guid: 79ec6043c2eb88a4a8d8e107655c917d,
     type: 2}
   m_PrefabInternal: {fileID: 1177198971}
---- !u!65 &917952813
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 917952806}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.9696567, y: 2.260501, z: 1.6281316}
-  m_Center: {x: -0.022969365, y: 0, z: 0.12810785}
 --- !u!1 &918694985
 GameObject:
   m_ObjectHideFlags: 0
@@ -22695,7 +22685,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 918694985}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 741dd9ba966eb4ddd9ee995bd1c1c93b, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -23159,7 +23149,7 @@ Transform:
   m_GameObject: {fileID: 936127220}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.27, y: 1.565, z: 4.94}
-  m_LocalScale: {x: 0.07085739, y: 0.093940005, z: 7.816462}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 399187850}
   m_Father: {fileID: 0}
@@ -26135,7 +26125,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1030053009}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 741dd9ba966eb4ddd9ee995bd1c1c93b, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -30354,15 +30344,31 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1526025049710064, guid: 79ec6043c2eb88a4a8d8e107655c917d, type: 2}
       propertyPath: m_Name
-      value: newCar
+      value: Car
       objectReference: {fileID: 0}
-    - target: {fileID: 82662989828929176, guid: 79ec6043c2eb88a4a8d8e107655c917d,
+    - target: {fileID: 4069270270998674, guid: 79ec6043c2eb88a4a8d8e107655c917d, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4378165375416512, guid: 79ec6043c2eb88a4a8d8e107655c917d, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114617245299303964, guid: 79ec6043c2eb88a4a8d8e107655c917d,
         type: 2}
-      propertyPath: MinDistance
-      value: 0.5302048
+      propertyPath: maxTorque
+      value: 2500
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 65852782352874664, guid: 79ec6043c2eb88a4a8d8e107655c917d, type: 2}
+    - target: {fileID: 114617245299303964, guid: 79ec6043c2eb88a4a8d8e107655c917d,
+        type: 2}
+      propertyPath: highestSpeed
+      value: 2500
+      objectReference: {fileID: 0}
+    - target: {fileID: 1265872687439562, guid: 79ec6043c2eb88a4a8d8e107655c917d, type: 2}
+      propertyPath: m_Name
+      value: Car_Model
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 79ec6043c2eb88a4a8d8e107655c917d, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1177791065
@@ -30454,7 +30460,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1182583680}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 741dd9ba966eb4ddd9ee995bd1c1c93b, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -42466,7 +42472,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a48bee06c416c014d82b3f1ed7e513af, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.25
+      value: 1.9541154
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a48bee06c416c014d82b3f1ed7e513af, type: 3}
       propertyPath: m_LocalRotation.x
@@ -42502,15 +42508,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a48bee06c416c014d82b3f1ed7e513af, type: 3}
       propertyPath: m_LocalScale.x
-      value: 705.64276
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a48bee06c416c014d82b3f1ed7e513af, type: 3}
       propertyPath: m_LocalScale.y
-      value: 6.39676
+      value: 70.00003
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a48bee06c416c014d82b3f1ed7e513af, type: 3}
       propertyPath: m_LocalScale.z
-      value: 532.2549
+      value: 70.00003
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a48bee06c416c014d82b3f1ed7e513af, type: 3}
