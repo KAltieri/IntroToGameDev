@@ -21,7 +21,7 @@ public class CarCameraScript : MonoBehaviour
         carRb = car.GetComponent<Rigidbody>();
     }
 
-	void FixedUpdate()
+	void Update()
 	{
 		//rotates the camera if the car is moving backwards or forwards
 		Vector3 localVelocity = car.InverseTransformDirection(carRb.velocity);
@@ -46,7 +46,7 @@ public class CarCameraScript : MonoBehaviour
         float myAngle = transform.eulerAngles.y;
         float myHeight = transform.position.y;
 
-		//moves the camera as the car moves along
+		//moves the camera as the car moves
         myAngle = Mathf.LerpAngle(myAngle, wantedAngle, rotationDamping * Time.deltaTime);
         myHeight = Mathf.Lerp(myHeight, wantedHeight, heightDamping * Time.deltaTime);
         Quaternion currentRotation = Quaternion.Euler(0, myAngle, 0);

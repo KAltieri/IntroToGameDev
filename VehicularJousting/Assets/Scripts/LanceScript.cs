@@ -26,10 +26,11 @@ public class LanceScript : MonoBehaviour
     void Update()
     {
         scoreBoard();
-		time = Time.time;
-		if(time - lastTime > .05f)
+		time = Time.deltaTime;
+		if(time > .05f)
 		{
 			wait = false;
+			time = 0f;
 		}
     }
 

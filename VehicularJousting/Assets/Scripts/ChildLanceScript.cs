@@ -11,6 +11,7 @@ public class ChildLanceScript : MonoBehaviour {
 
 	void Update ()
     {
+		//follows the mouse movement, and clamps the movement to a specified range
         yRot -= Input.GetAxis("Mouse X") * speed;
         xRot += Input.GetAxis("Mouse Y") * speed;
 
