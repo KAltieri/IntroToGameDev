@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: 8f1bc4d5229af05468f9de3d73b9d8dd
+timeCreated: 1522299097
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Krunch
+  fontNames:
+  - Krunch
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 18e7f6acfed76214ebcb7d14ce1b236a, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

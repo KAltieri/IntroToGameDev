@@ -15,6 +15,7 @@ public class CameraRotation : MonoBehaviour
     void Start()
     {
         rotateAround = rotateAroundObj.position;
+        transform.position = new Vector3(rotateAround.x, transform.position.y, rotateAround.z - 15);
     }
 
     // Update is called once per frame
