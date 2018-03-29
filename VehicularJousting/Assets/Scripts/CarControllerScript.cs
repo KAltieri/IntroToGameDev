@@ -60,10 +60,11 @@ public class CarControllerScript : MonoBehaviour
             wheelRR.brakeTorque = 0;
             wheelRL.brakeTorque = 0;
         }
+        ReverseSlip();
     }
 
-	// Update is called once per frame
-	void Update()
+    // Update is called once per frame
+    void Update()
 	{
 		currentSpeed = 2 * 22 / 7 * wheelRL.radius * wheelRL.rpm * 60 / 1000;
 		float SpeedFactor = rb.velocity.magnitude / highestSpeed;
@@ -74,7 +75,6 @@ public class CarControllerScript : MonoBehaviour
 
 		HandBrake ();
 		EngineSound ();
-		ReverseSlip ();
 	}
 
 	//acts like a brake for the car

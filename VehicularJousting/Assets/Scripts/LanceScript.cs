@@ -26,6 +26,10 @@ public class LanceScript : MonoBehaviour
     void Update()
     {
         scoreBoard();
+        if (Time.time - lastTime > .05f)
+        {
+            wait = false;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -63,8 +67,7 @@ public class LanceScript : MonoBehaviour
                 wait = true;
             }
         }
-        time = Time.time;
-        if(time - lastTime > .05f)
+        if(Time.time - lastTime > .05f)
         {
             wait = false;
         }
