@@ -40,4 +40,14 @@ public class Menu : MonoBehaviour {
 	{
 		PlayerPrefs.SetInt ("CarColor", color);
 	}
+
+	public void SetXInverese(int setInverse)
+	{
+		PlayerPrefs.SetInt ("Inverse X", setInverse);
+	}
+
+	public void SetYInverse(int setInverse)
+	{
+		PlayerPrefs.SetInt ("Inverse Y", setInverse);
+	}
 }

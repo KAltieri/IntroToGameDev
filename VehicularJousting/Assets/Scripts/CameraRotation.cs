@@ -21,26 +21,26 @@ public class CameraRotation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (rotation > 1)
-        {
-            if (interval > 2)
-            {
-                interval = 0;
-            }
-            else
-            {
-                interval++;
-            }
-        }
-        Debug.Log(rotation);
-        switch (interval)
-        {
-            case 1:
-                transform.RotateAround(rotateAround, Vector3.zero, 0);
-                break;
-            case 0:
-                transform.RotateAround(rotateAround, Vector3.up, rotation);
-                break;
+		transform.RotateAround(rotateAround, Vector3.up, rotation);
+//        if (rotation > 1)
+//        {
+//            if (interval > 2)
+//            {
+//                interval = 0;
+//            }
+//            else
+//            {
+//                interval++;
+//            }
+//        }
+//        switch (interval)
+//        {
+//            case 1:
+//                transform.RotateAround(rotateAround, Vector3.zero, 0);
+//                break;
+//            case 0:
+//                transform.RotateAround(rotateAround, Vector3.up, rotation);
+//                break;
                 //    case 3:
                 //        rotation += Time.deltaTime * 2;
                 //        transform.RotateAround(rotateAround, Vector3.right, rotation);
@@ -54,6 +54,6 @@ public class CameraRotation : MonoBehaviour
                 //        transform.RotateAround(rotateAround, Vector3.right, rotation);
                 //        break;
                 //}
-        }
+//        }
     }
 }

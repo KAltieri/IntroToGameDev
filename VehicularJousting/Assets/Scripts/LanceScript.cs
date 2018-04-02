@@ -80,7 +80,7 @@ public class LanceScript : MonoBehaviour
         pointText.text = "Points: " + currentScore;
         if (currentScore > endScore)
         {
-            pointText.text = "YOU WIN!!!";
+			SceneManager.LoadScene ("Win", LoadSceneMode.Single);
         }
     }
 
@@ -88,7 +88,7 @@ public class LanceScript : MonoBehaviour
     {
         if (Time.timeSinceLevelLoad > endTime)
         {
-            Application.Quit();
+			SceneManager.LoadScene ("Lose", LoadSceneMode.Single);
         }
     }
 }
