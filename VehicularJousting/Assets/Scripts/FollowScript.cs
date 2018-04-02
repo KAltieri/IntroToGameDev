@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class FollowScript : MonoBehaviour {
 
-    public GameObject follow;
+    GameObject follow;
 	// Use this for initialization
-	void Start () {
-		
+	void Start () 
+	{
+		follow = GameObject.FindGameObjectWithTag ("LanceTarget");
 	}
 	
 	// Update is called once per frame

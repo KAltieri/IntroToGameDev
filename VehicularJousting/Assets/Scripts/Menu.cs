@@ -20,13 +20,24 @@ public class Menu : MonoBehaviour {
         SceneManager.LoadScene("LevelOne", LoadSceneMode.Single);
     }
 
-    public void InstructionClick()
+    public void TurnOnOtherCanvas(GameObject otherCanvas)
     {
-
+		gameObject.SetActive (false);
+		otherCanvas.SetActive (true);
     }
 
     public void QuitGame()
     {
         Application.Quit();
     }
+
+	public void LoadMenu()
+	{
+		SceneManager.LoadScene ("Start", LoadSceneMode.Single);
+	}
+
+	public void SetCarColor(int color)
+	{
+		PlayerPrefs.SetInt ("CarColor", color);
+	}
 }

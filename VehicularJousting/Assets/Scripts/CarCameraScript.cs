@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CarCameraScript : MonoBehaviour
 {
-
-    public Transform car;
+	GameObject carObj;
+    Transform car;
     Rigidbody carRb;
     float distance = 7.4f;
     float height = 3f;
@@ -18,6 +18,8 @@ public class CarCameraScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+		carObj = GameObject.FindGameObjectWithTag ("Car");
+		car = carObj.GetComponent<Transform> ();
         carRb = car.GetComponent<Rigidbody>();
     }
 
