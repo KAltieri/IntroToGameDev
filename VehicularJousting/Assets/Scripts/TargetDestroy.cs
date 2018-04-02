@@ -17,11 +17,11 @@ public class TargetDestroy : MonoBehaviour {
 	{
         if (destroyTarget)
         {
-            timeDestroy = Time.deltaTime;
-            if (timeDestroy >= 5f)
+            timeDestroy -= Time.deltaTime;
+            if (timeDestroy <= 0)
             {
                 destroyTarget = false;
-                Destroy(this);
+                Destroy(gameObject);
             }
         }
 
@@ -29,9 +29,10 @@ public class TargetDestroy : MonoBehaviour {
 
 	private void OnCollisionEnter(Collision collision)
 	{
-		if(collision.gameObject.tag == "Car")
+		if(collision.gameObject.CompareTag("Car"))
         {
             destroyTarget = true;
+            timeDestroy = Time.time;
         }
 	}
 }
