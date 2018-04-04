@@ -12,6 +12,7 @@ TagManager:
   - Car
   - Target
   - LanceTarget
+  - LanceObj
   layers:
   - Default
   - TransparentFX

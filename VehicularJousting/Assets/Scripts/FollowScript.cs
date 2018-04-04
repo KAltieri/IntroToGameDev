@@ -8,7 +8,8 @@ public class FollowScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		follow = GameObject.FindGameObjectWithTag ("LanceTarget");
+		GameObject car = GameObject.FindGameObjectWithTag ("Car");
+		follow = car.transform.Find ("LancePositionTarget").gameObject;
 	}
 	
 	// Update is called once per frame

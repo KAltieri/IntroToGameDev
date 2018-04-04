@@ -65,7 +65,9 @@ public class CarControllerScript : MonoBehaviour
 
     public float getCarSpeed()
     {
-        return 2 * 22 / 7 * wheelRL.radius * wheelRL.rpm * 60 / 1000;
+        currentSpeed = 2 * 22 / 7 * wheelRL.radius * wheelRL.rpm * 60 / 1000;
+		currentSpeed = Mathf.Round (currentSpeed);
+		return currentSpeed;
     }
 
     // Update is called once per frame
@@ -200,12 +202,16 @@ public class CarControllerScript : MonoBehaviour
         }
         else
         {
-            maxGearValue = gearRatio[gear - 1];
+            minGearValue = gearRatio[gear - 1];
         }
         maxGearValue = gearRatio[gear];
-
+		float modCurrentSpeed = currentSpeed / 10;
 		//sets the pitch based on gear and speed
-        float enginePitch = ((currentSpeed - minGearValue) / (maxGearValue - minGearValue)) + 1;
+        float enginePitch = ((modCurrentSpeed - maxGearValue) / (maxGearValue - minGearValue)) + 1;
+		if (enginePitch <= .5f) 
+		{
+			enginePitch = .5f;
+		}
         GetComponent<AudioSource>().pitch = enginePitch;
     }
 }

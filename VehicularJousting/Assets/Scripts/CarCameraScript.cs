@@ -27,11 +27,11 @@ public class CarCameraScript : MonoBehaviour
 	{
 		//rotates the camera if the car is moving backwards or forwards
 		Vector3 localVelocity = car.InverseTransformDirection(carRb.velocity);
-        if(Input.GetKeyDown(KeyCode.W))
+        if(Input.GetKey(KeyCode.W))
         {
             rotationVector.y = car.eulerAngles.y;
         }
-        if(Input.GetKeyDown(KeyCode.S))
+        if(Input.GetKey(KeyCode.S))
         {
             rotationVector.y = car.eulerAngles.y + 180;
 		}
@@ -48,8 +48,15 @@ public class CarCameraScript : MonoBehaviour
         }
 
 		//zooms out as the car goes faster
-		var acc = carRb.velocity.magnitude;
-		GetComponent<Camera>().fieldOfView = DefaultFOV + (acc * zoomRatio);
+		if(Input.GetKey(KeyCode.S))
+		{
+			GetComponent<Camera>().fieldOfView = DefaultFOV + (zoomRatio * -1);
+		}
+		else
+		{
+			var acc = carRb.velocity.magnitude;
+			GetComponent<Camera>().fieldOfView = DefaultFOV + (acc * zoomRatio);
+		}
 	}
 
 	void LateUpdate()

@@ -12062,6 +12062,7 @@ MonoBehaviour:
   cars:
   - {fileID: 1526025049710064, guid: 79ec6043c2eb88a4a8d8e107655c917d, type: 2}
   - {fileID: 1259307486138092, guid: a69dd651a0e2146a9a9561879ef23699, type: 2}
+  - {fileID: 1326356893176430, guid: fc985c83b2514435db795b1e8c37d14e, type: 2}
 --- !u!4 &454135194
 Transform:
   m_ObjectHideFlags: 0
