@@ -63,10 +63,15 @@ public class CarControllerScript : MonoBehaviour
         ReverseSlip();
     }
 
+    public float getCarSpeed()
+    {
+        return 2 * 22 / 7 * wheelRL.radius * wheelRL.rpm * 60 / 1000;
+    }
+
     // Update is called once per frame
     void Update()
 	{
-		currentSpeed = 2 * 22 / 7 * wheelRL.radius * wheelRL.rpm * 60 / 1000;
+        currentSpeed = getCarSpeed();
 		float SpeedFactor = rb.velocity.magnitude / highestSpeed;
 		float currentSteeringAngle = Mathf.Lerp(lowSpeedTurnAngle, highSpeedTurnAngle, SpeedFactor);
 		currentSteeringAngle *= Input.GetAxis("Horizontal");

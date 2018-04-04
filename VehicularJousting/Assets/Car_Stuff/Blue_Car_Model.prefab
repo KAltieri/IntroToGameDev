@@ -733,7 +733,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WheelL: {fileID: 146740019768478152}
   WheelR: {fileID: 146861827030506314}
-  AntiRoll: 5000
+  AntiRoll: 10000
 --- !u!114 &114617245299303964
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -753,10 +753,10 @@ MonoBehaviour:
   highestSpeed: 5000
   lowSpeedTurnAngle: 10
   highSpeedTurnAngle: 100
-  decellerationSpeed: 50
+  decellerationSpeed: 500
   maxBrakeTorque: 5000
-  slipSidewWayFriction: 1
-  slipForwardFriction: 2
+  slipSidewWayFriction: 10
+  slipForwardFriction: 20
 --- !u!114 &114842738180555328
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -770,7 +770,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WheelL: {fileID: 146464718362796102}
   WheelR: {fileID: 146478327803123854}
-  AntiRoll: 5000
+  AntiRoll: 10000
 --- !u!114 &114932869495994468
 MonoBehaviour:
   m_ObjectHideFlags: 1
