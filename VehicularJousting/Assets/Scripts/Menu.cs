@@ -5,21 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	//script to control all the different menus in the game
 
     public void StartClick()
     {
         SceneManager.LoadScene("LevelOne", LoadSceneMode.Single);
     }
 
+	//sets another canvas to active and deactivates the original canvas
     public void TurnOnOtherCanvas(GameObject otherCanvas)
     {
 		gameObject.SetActive (false);

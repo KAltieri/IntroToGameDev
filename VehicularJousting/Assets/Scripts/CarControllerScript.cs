@@ -5,18 +5,22 @@ using UnityEngine;
 public class CarControllerScript : MonoBehaviour
 {
 
+	//script that controls the cars
+
+	[Header("Wheel Colliders")]
     public WheelCollider wheelFR;
     public WheelCollider wheelFL;
     public WheelCollider wheelRL;
     public WheelCollider wheelRR;
 
-    //speed vars
+	[Header("Speed Modifiers")]
     public float maxTorque = 50;
     public float highestSpeed = 50;
     public float lowSpeedTurnAngle = 1;
     public float highSpeedTurnAngle = 10;
     public float decellerationSpeed = 50;
     public float maxBrakeTorque = 100;
+
 	float currentSpeed;
 	bool brake = false;
 
@@ -24,6 +28,8 @@ public class CarControllerScript : MonoBehaviour
     //friction
     float sidewaysFriction;
     float forwardFriction;
+
+	[Header("Friction Modifiers")]
     public float slipSidewWayFriction = 0.05f;
     public float slipForwardFriction = .085f;
 
@@ -31,25 +37,31 @@ public class CarControllerScript : MonoBehaviour
     Rigidbody rb;
     float[] gearRatio = new float[5];
 
-    // Use this for initialization
     void Start()
     {
-		//sets the gear speeds for enginePitche
+		//sets the gear speeds for enginePitch
         for(int i = 0; i < gearRatio.Length; i++)
         {
 			gearRatio[i] = (highestSpeed/10 - highestSpeed/100) * (i+1);
         }
         gearRatio[4] = highestSpeed+10;
+
+		//sets up the rest of the vars
         rb = GetComponent<Rigidbody>();
         rb.centerOfMass = new Vector3(0, -0.9f, .5f);
+
+		//gets the friction of the rear wheel and sets it to values
         forwardFriction = wheelRR.forwardFriction.stiffness;
         sidewaysFriction = wheelRR.sidewaysFriction.stiffness;
     }
 
     void FixedUpdate()
     {
+		//controls the wheel torque, therefore speed, based on the input and maxTorque
         wheelRR.motorTorque = maxTorque * Input.GetAxis("Vertical");
         wheelRL.motorTorque = maxTorque * Input.GetAxis("Vertical");
+
+		//declerates
         if (!Input.GetButton("Vertical"))
         {
             wheelRR.brakeTorque = decellerationSpeed;
@@ -70,11 +82,12 @@ public class CarControllerScript : MonoBehaviour
 		return currentSpeed;
     }
 
-    // Update is called once per frame
     void Update()
 	{
         currentSpeed = getCarSpeed();
 		float SpeedFactor = rb.velocity.magnitude / highestSpeed;
+
+		//gets the steering angle based on Lerping the low speed angle and the high speed angle
 		float currentSteeringAngle = Mathf.Lerp(lowSpeedTurnAngle, highSpeedTurnAngle, SpeedFactor);
 		currentSteeringAngle *= Input.GetAxis("Horizontal");
 		wheelFL.steerAngle = currentSteeringAngle;
@@ -84,7 +97,7 @@ public class CarControllerScript : MonoBehaviour
 		EngineSound ();
 	}
 
-	//acts like a brake for the car
+	// a brake
     void HandBrake()
     {
         if (Input.GetButton("Jump"))
@@ -97,6 +110,7 @@ public class CarControllerScript : MonoBehaviour
         }
         if (brake)
         {
+			//sets the forward torque to nothing and sets the break torque to the max brake torque
             if (currentSpeed > 1)
             {
                 wheelFR.brakeTorque = maxBrakeTorque;
@@ -142,20 +156,23 @@ public class CarControllerScript : MonoBehaviour
 	//increases back wheel friction
     void SetRearSlip(float currentForwardFriction, float currentSidewayFriction)
     {
-		//Rear Right
+		//sets a friction curve equal to the Rear Right wheel forward Friction, then increases the stiffness on it
+		//Lastly sets the RR wheel forward friction equal to the curve
         WheelFrictionCurve wFRR = wheelRR.forwardFriction;
         wFRR.stiffness = currentForwardFriction;
         wheelRR.forwardFriction = wFRR;
 
+		//same as above except with the sidways friction
         WheelFrictionCurve wSRR = wheelRR.sidewaysFriction;
         wSRR.stiffness = currentSidewayFriction;
         wheelRR.forwardFriction = wSRR;
 
-		//Rear Left Tire
+		//same as the first
         WheelFrictionCurve wFRL = wheelRL.forwardFriction;
         wFRL.stiffness = currentForwardFriction;
         wheelRL.forwardFriction = wFRL;
 
+		//same as above except with the sidways friction
         WheelFrictionCurve wSRL = wheelRL.forwardFriction;
         wSRL.stiffness = currentForwardFriction;
         wheelRL.forwardFriction = wSRL;
@@ -164,7 +181,8 @@ public class CarControllerScript : MonoBehaviour
 	//increases front wheel friction
     void SetFrontSlip(float currentForwardFriction, float currentSidewayFriction)
     {
-		//Front Right
+		//sets a friction curve equal to the Front Right wheel forward Friction, then increases the stiffness on it
+		//Lastly sets the FR wheel forward friction equal to the curve
         WheelFrictionCurve wFFR = wheelFR.forwardFriction;
         wFFR.stiffness = currentForwardFriction;
         wheelFR.forwardFriction = wFFR;

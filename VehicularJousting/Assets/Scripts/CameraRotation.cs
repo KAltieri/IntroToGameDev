@@ -4,24 +4,28 @@ using UnityEngine;
 
 public class CameraRotation : MonoBehaviour
 {
-
+	[Header("Rotation Settings")]
     public float rotation = .01f;
     public Transform rotateAroundObj;
 
     Vector3 rotateAround;
     int interval = 0;
 
-    // Use this for initialization
+	//Used for the menus - camera rotates around the point
+
     void Start()
     {
         rotateAround = rotateAroundObj.position;
         transform.position = new Vector3(rotateAround.x, transform.position.y, rotateAround.z - 15);
     }
 
-    // Update is called once per frame
     void Update()
     {
 		transform.RotateAround(rotateAround, Vector3.up, rotation);
+
+		//Different camera rotations - didn't use
+
+
 //        if (rotation > 1)
 //        {
 //            if (interval > 2)
