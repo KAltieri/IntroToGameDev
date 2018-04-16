@@ -38,39 +38,54 @@ public class LanceScript : MonoBehaviour
 		//outer - black portion of the target - low thud and +1 point
 		if (collision.collider.tag == "Outer")
         {
-            Destroy(collision.gameObject);
-            if (!wait)
-            {
-                currentScore++;
-                outer.Play();
-                lastTime = Time.time;
-                wait = true;
+            if (!collision.gameObject.GetComponent<TargetDestroy>().target_hit){
+                collision.gameObject.GetComponent<TargetDestroy>().explode(GameObject.FindGameObjectWithTag("Car"));
+                if (!wait)
+                {
+                    currentScore++;
+                    outer.Play();
+                    lastTime = Time.time;
+                    wait = true;
+                    Instantiate(Resources.Load("pExplosion") as GameObject, transform.position, transform.rotation);
+                }
             }
         }
 
 		//inner - white portion of the target - medium ding and +5 points
         else if (collision.collider.tag == "Inner")
         {
-            Destroy(collision.gameObject);
-            if (!wait)
-            {
-                currentScore += 5;
-                inner.Play();
-                lastTime = Time.time;
-                wait = true;
+            if (!collision.gameObject.GetComponent<TargetDestroy>().target_hit){
+                collision.gameObject.GetComponent<TargetDestroy>().target_hit = true;
+                Vector3 add_force = GameObject.FindGameObjectWithTag("Car").GetComponent<Rigidbody>().velocity * 100f;
+                collision.gameObject.GetComponent<Rigidbody>().AddForce(add_force);
+                collision.gameObject.GetComponent<Rigidbody>().useGravity = true;
+                if (!wait)
+                {
+                    currentScore += 5;
+                    inner.Play();
+                    lastTime = Time.time;
+                    wait = true;
+                }
             }
         }
 
 		//outer - red portion of the target - high pitch ding and +10 points
 		else if (collision.collider.tag == "Perfect")
         {
-            Destroy(collision.gameObject);
-            if (!wait)
-            {
-                currentScore += 10;
-                perfect.Play();
-                lastTime = Time.time;
-                wait = true;
+            if (!collision.gameObject.GetComponent<TargetDestroy>().target_hit){
+                collision.gameObject.GetComponent<TargetDestroy>().target_hit = true;
+                Vector3 add_force = GameObject.FindGameObjectWithTag("Car").GetComponent<Rigidbody>().velocity * 1500f;
+                collision.gameObject.GetComponent<Rigidbody>().AddForce(add_force);
+                collision.gameObject.GetComponent<Rigidbody>().useGravity = true;
+                if (!wait)
+                {
+                    currentScore += 10;
+                    perfect.Play();
+                    lastTime = Time.time;
+                    wait = true;
+                }
+                Camera.main.GetComponent<AudioSource>().PlayOneShot(Resources.Load("YaySFX") as AudioClip);
+                Camera.main.GetComponent<AudioSource>().PlayOneShot(Resources.Load("ExplodeSFX") as AudioClip);
             }
         }
 

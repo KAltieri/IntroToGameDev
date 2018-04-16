@@ -15,6 +15,9 @@ public class CarCameraScript : MonoBehaviour
     float DefaultFOV = 60f;
     private Vector3 rotationVector;
 
+    private float shake_timer;
+    private float shake_inten;
+
     // Use this for initialization
     void Start()
     {
@@ -75,5 +78,16 @@ public class CarCameraScript : MonoBehaviour
         Vector3 temp = transform.position;
         transform.position = new Vector3(temp.x, myHeight, temp.z);
         transform.LookAt(car);
+
+        if (shake_timer > 0){
+            shake_inten *= 0.85f;
+            transform.position = new Vector3(transform.position.x + Random.Range(-shake_inten, shake_inten), transform.position.y + Random.Range(-shake_inten, shake_inten), transform.position.z);
+        }
+        shake_timer--;
+    }
+
+    public void screenShake(float time){
+        shake_timer = time;
+        shake_inten = 0.65f;
     }
 }
