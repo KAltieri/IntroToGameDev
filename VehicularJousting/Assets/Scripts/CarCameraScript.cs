@@ -29,7 +29,6 @@ public class CarCameraScript : MonoBehaviour
 	void Update()
 	{
 		//rotates the camera if the car is moving backwards or forwards
-		Vector3 localVelocity = car.InverseTransformDirection(carRb.velocity);
         if(Input.GetKey(KeyCode.W))
         {
             rotationVector.y = car.eulerAngles.y;

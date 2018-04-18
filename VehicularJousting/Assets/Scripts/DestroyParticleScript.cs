@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestroyCounterScript : MonoBehaviour {
+public class DestroyParticleScript : MonoBehaviour {
 
     [SerializeField] private int counter;
 	

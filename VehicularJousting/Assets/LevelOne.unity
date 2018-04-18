@@ -12059,10 +12059,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609c15d6a6e2644d7bf7946594ecc209, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cars:
-  - {fileID: 1526025049710064, guid: 79ec6043c2eb88a4a8d8e107655c917d, type: 2}
-  - {fileID: 1259307486138092, guid: a69dd651a0e2146a9a9561879ef23699, type: 2}
-  - {fileID: 1326356893176430, guid: fc985c83b2514435db795b1e8c37d14e, type: 2}
 --- !u!4 &454135194
 Transform:
   m_ObjectHideFlags: 0
@@ -25638,7 +25634,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 905079526}
-  m_PlaneDistance: 100
+  m_PlaneDistance: 1
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0

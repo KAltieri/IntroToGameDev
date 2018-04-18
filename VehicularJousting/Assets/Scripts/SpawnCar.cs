@@ -4,15 +4,29 @@ using UnityEngine;
 
 public class SpawnCar : MonoBehaviour {
 
-	public GameObject[] cars;
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 		if (!PlayerPrefs.HasKey ("CarColor")) 
 		{
 			PlayerPrefs.SetInt ("CarColor", 0);
 		}
-		Instantiate (cars [PlayerPrefs.GetInt ("CarColor")], transform.position, transform.rotation);
+		switch (PlayerPrefs.GetInt("CarColor"))
+		{
+		default: 
+			Instantiate (Resources.Load ("Blue_Car_Model"), transform.position, transform.rotation);
+			break;
+		case 0:
+			Instantiate (Resources.Load ("Blue_Car_Model"), transform.position, transform.rotation);
+			break;
+		case 1:
+			Instantiate (Resources.Load ("Red_Car_Model"), transform.position, transform.rotation);
+			break;
+		case 2:
+			Instantiate (Resources.Load ("Green_Car_Model"), transform.position, transform.rotation);
+			break;
+		}
 		Destroy (gameObject);
 	}
 	

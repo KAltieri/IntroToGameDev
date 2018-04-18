@@ -9,7 +9,7 @@ public class CameraRotation : MonoBehaviour
     public Transform rotateAroundObj;
 
     Vector3 rotateAround;
-    int interval = 0;
+//    int interval = 0;
 
 	//Used for the menus - camera rotates around the point
 

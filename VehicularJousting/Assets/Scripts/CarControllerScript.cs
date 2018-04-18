@@ -72,6 +72,15 @@ public class CarControllerScript : MonoBehaviour
             wheelRR.brakeTorque = 0;
             wheelRL.brakeTorque = 0;
         }
+		currentSpeed = getCarSpeed();
+		float SpeedFactor = rb.velocity.magnitude / highestSpeed;
+		//gets the steering angle based on Lerping the low speed angle and the high speed angle
+		float currentSteeringAngle = Mathf.Lerp(lowSpeedTurnAngle, highSpeedTurnAngle, SpeedFactor);
+
+		currentSteeringAngle *= Input.GetAxis("Horizontal");
+		wheelFL.steerAngle = currentSteeringAngle;
+		wheelFR.steerAngle = currentSteeringAngle;
+
         ReverseSlip();
     }
 
@@ -84,15 +93,15 @@ public class CarControllerScript : MonoBehaviour
 
     void Update()
 	{
-        currentSpeed = getCarSpeed();
-		float SpeedFactor = rb.velocity.magnitude / highestSpeed;
-
-		//gets the steering angle based on Lerping the low speed angle and the high speed angle
-		float currentSteeringAngle = Mathf.Lerp(lowSpeedTurnAngle, highSpeedTurnAngle, SpeedFactor);
-		currentSteeringAngle *= Input.GetAxis("Horizontal");
-		wheelFL.steerAngle = currentSteeringAngle;
-		wheelFR.steerAngle = currentSteeringAngle;
-
+//        currentSpeed = getCarSpeed();
+//		float SpeedFactor = rb.velocity.magnitude / highestSpeed;
+//
+//		//gets the steering angle based on Lerping the low speed angle and the high speed angle
+//		float currentSteeringAngle = Mathf.Lerp(lowSpeedTurnAngle, highSpeedTurnAngle, SpeedFactor);
+//		currentSteeringAngle *= Input.GetAxis("Horizontal");
+//		wheelFL.steerAngle = currentSteeringAngle;
+//		wheelFR.steerAngle = currentSteeringAngle;
+//
 		HandBrake ();
 		EngineSound ();
 	}

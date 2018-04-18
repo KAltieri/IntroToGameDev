@@ -38,7 +38,8 @@ public class LanceScript : MonoBehaviour
 		//outer - black portion of the target - low thud and +1 point
 		if (collision.collider.tag == "Outer")
         {
-            if (!collision.gameObject.GetComponent<TargetDestroy>().target_hit){
+            if (!collision.gameObject.GetComponent<TargetDestroy>().target_hit)
+			{
                 collision.gameObject.GetComponent<TargetDestroy>().explode(GameObject.FindGameObjectWithTag("Car"));
                 if (!wait)
                 {
@@ -54,7 +55,8 @@ public class LanceScript : MonoBehaviour
 		//inner - white portion of the target - medium ding and +5 points
         else if (collision.collider.tag == "Inner")
         {
-            if (!collision.gameObject.GetComponent<TargetDestroy>().target_hit){
+            if (!collision.gameObject.GetComponent<TargetDestroy>().target_hit)
+			{
                 collision.gameObject.GetComponent<TargetDestroy>().target_hit = true;
                 Vector3 add_force = GameObject.FindGameObjectWithTag("Car").GetComponent<Rigidbody>().velocity * 100f;
                 collision.gameObject.GetComponent<Rigidbody>().AddForce(add_force);
@@ -72,7 +74,8 @@ public class LanceScript : MonoBehaviour
 		//outer - red portion of the target - high pitch ding and +10 points
 		else if (collision.collider.tag == "Perfect")
         {
-            if (!collision.gameObject.GetComponent<TargetDestroy>().target_hit){
+            if (!collision.gameObject.GetComponent<TargetDestroy>().target_hit)
+			{
                 collision.gameObject.GetComponent<TargetDestroy>().target_hit = true;
                 Vector3 add_force = GameObject.FindGameObjectWithTag("Car").GetComponent<Rigidbody>().velocity * 1500f;
                 collision.gameObject.GetComponent<Rigidbody>().AddForce(add_force);
