@@ -649,7 +649,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2cf15e5874aab244d9ea5bf696ddfa89, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c1a4d6277f8926346a84cb0adf77b59c, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -749,8 +749,8 @@ MonoBehaviour:
   wheelFL: {fileID: 146196641668466740}
   wheelRL: {fileID: 146695558024016516}
   wheelRR: {fileID: 146676302299150512}
-  maxTorque: 5000
-  highestSpeed: 5000
+  maxTorque: 2500
+  highestSpeed: 2500
   lowSpeedTurnAngle: 10
   highSpeedTurnAngle: 100
   decellerationSpeed: 1000

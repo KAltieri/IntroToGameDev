@@ -152,14 +152,15 @@ public class CarControllerScript : MonoBehaviour
 	//deals with friction values
     void ReverseSlip()
     {
-        if (currentSpeed < 0)
-        {
-            SetFrontSlip(slipForwardFriction, slipSidewWayFriction);
-        }
-        else
-        {
-            SetFrontSlip(forwardFriction, sidewaysFriction);
-        }
+        SetFrontSlip(forwardFriction, sidewaysFriction);
+        //if (currentSpeed < 0)
+        //{
+        //    SetFrontSlip(slipForwardFriction, slipSidewWayFriction);
+        //}
+        //else
+        //{
+        //    SetFrontSlip(forwardFriction, sidewaysFriction);
+        //}
     }
 
 	//increases back wheel friction
@@ -235,6 +236,7 @@ public class CarControllerScript : MonoBehaviour
 		float modCurrentSpeed = currentSpeed / 10;
 		//sets the pitch based on gear and speed
         float enginePitch = ((modCurrentSpeed - maxGearValue) / (maxGearValue - minGearValue)) + 1;
+        Debug.Log(enginePitch);
 		if (enginePitch <= .5f) 
 		{
 			enginePitch = .5f;
