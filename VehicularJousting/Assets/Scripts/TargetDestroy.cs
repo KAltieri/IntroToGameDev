@@ -40,6 +40,8 @@ public class TargetDestroy : MonoBehaviour {
         }
 	}
 
+	//if the car hits a target, a permanent explosion is created, and the target is knocked over by the force
+	//additionally, a sound fx is played and the screen shakes
     public void explode(GameObject car){
         Instantiate(Resources.Load("pExplosion2") as GameObject, transform.position, transform.rotation);
         timeDestroy = 120;
