@@ -47,6 +47,7 @@ public class LanceScript : MonoBehaviour
                     outer.Play();
                     lastTime = Time.time;
                     wait = true;
+                    //creates an explosion
                     Instantiate(Resources.Load("pExplosion") as GameObject, transform.position, transform.rotation);
                 }
             }
@@ -76,6 +77,7 @@ public class LanceScript : MonoBehaviour
         {
             if (!collision.gameObject.GetComponent<TargetDestroy>().target_hit)
 			{
+                //adds an effect where the target is launched away from the car based on the car's velocity multiplied by 1500
                 collision.gameObject.GetComponent<TargetDestroy>().target_hit = true;
                 Vector3 add_force = GameObject.FindGameObjectWithTag("Car").GetComponent<Rigidbody>().velocity * 1500f;
                 collision.gameObject.GetComponent<Rigidbody>().AddForce(add_force);

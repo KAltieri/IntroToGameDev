@@ -21,6 +21,7 @@ public class CameraRotation : MonoBehaviour
 
     void Update()
     {
+        //Rotates the camera around a gameObject from the scene
 		transform.RotateAround(rotateAround, Vector3.up, rotation);
 
 		//Different camera rotations - didn't use

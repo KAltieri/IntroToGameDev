@@ -12,7 +12,12 @@ public class Menu : MonoBehaviour {
         SceneManager.LoadScene("LevelOne", LoadSceneMode.Single);
     }
 
-	//sets another canvas to active and deactivates the original canvas
+    public void ReturnToMain()
+    {
+        SceneManager.LoadScene("Start", LoadSceneMode.Single);
+    }
+
+    //sets another canvas to active and deactivates the original canvas
     public void TurnOnOtherCanvas(GameObject otherCanvas)
     {
 		gameObject.SetActive (false);
@@ -23,11 +28,6 @@ public class Menu : MonoBehaviour {
     {
         Application.Quit();
     }
-
-	public void LoadMenu()
-	{
-		SceneManager.LoadScene ("Start", LoadSceneMode.Single);
-	}
 
 	public void SetCarColor(int color)
 	{

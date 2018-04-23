@@ -736,7 +736,7 @@ MonoBehaviour:
   wheelRL: {fileID: 146229171023250582}
   wheelRR: {fileID: 146100835157049410}
   maxTorque: 2500
-  highestSpeed: 2500
+  highestSpeed: 125
   lowSpeedTurnAngle: 10
   highSpeedTurnAngle: 100
   decellerationSpeed: 1000

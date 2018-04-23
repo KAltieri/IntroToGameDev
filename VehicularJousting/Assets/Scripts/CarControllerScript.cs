@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CarControllerScript : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class CarControllerScript : MonoBehaviour
 
 	float currentSpeed;
 	bool brake = false;
+    Quaternion reset;
 
 
     //friction
@@ -39,10 +41,11 @@ public class CarControllerScript : MonoBehaviour
 
     void Start()
     {
+        reset = transform.rotation;
 		//sets the gear speeds for enginePitch
         for(int i = 0; i < gearRatio.Length; i++)
         {
-			gearRatio[i] = (highestSpeed/10 - highestSpeed/100) * (i+1);
+			gearRatio[i] = (highestSpeed/5 - highestSpeed/50) * (i+1);
         }
         gearRatio[4] = highestSpeed+10;
 
@@ -86,7 +89,8 @@ public class CarControllerScript : MonoBehaviour
 
     public float getCarSpeed()
     {
-        currentSpeed = 2 * 22 / 7 * wheelRL.radius * wheelRL.rpm * 60 / 1000;
+        //currentSpeed = 2 * 22 / 7 * wheelRL.radius * wheelRL.rpm * 60 / 1000;
+        currentSpeed = rb.velocity.magnitude * 2.237f;
 		currentSpeed = Mathf.Round (currentSpeed);
 		return currentSpeed;
     }
@@ -104,7 +108,17 @@ public class CarControllerScript : MonoBehaviour
 //
 		HandBrake ();
 		EngineSound ();
-	}
+        //incase the car flips
+        if(Input.GetKeyUp(KeyCode.R))
+        {
+            transform.rotation = reset;
+        }
+        //to return to main
+        if(Input.GetKeyUp(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("Start", LoadSceneMode.Single);
+        }
+    }
 
 	// a brake
     void HandBrake()
@@ -128,6 +142,7 @@ public class CarControllerScript : MonoBehaviour
                 wheelRL.motorTorque = 0;
 				SetRearSlip(slipForwardFriction, slipSidewWayFriction);
             }
+            //same as above except sets the rear slip to 1
             else if (currentSpeed < 0)
             {
                 wheelRR.brakeTorque = maxBrakeTorque;
@@ -213,34 +228,35 @@ public class CarControllerScript : MonoBehaviour
 
     void EngineSound()
     {
-        int gear = 0;
-        for (int i = 0; i < gearRatio.Length; i++)
-        {
-            if (gearRatio[i] > currentSpeed)
-            {
-                gear = i;
-                break;
-            }
-        }
-        float minGearValue = 0f;
-        float maxGearValue = 0f;
-        if (gear == 0)
-        {
-            minGearValue = 0;
-        }
-        else
-        {
-            minGearValue = gearRatio[gear - 1];
-        }
-        maxGearValue = gearRatio[gear];
-		float modCurrentSpeed = currentSpeed / 10;
-		//sets the pitch based on gear and speed
-        float enginePitch = ((modCurrentSpeed - maxGearValue) / (maxGearValue - minGearValue)) + 1;
-        Debug.Log(enginePitch);
-		if (enginePitch <= .5f) 
-		{
-			enginePitch = .5f;
-		}
-        GetComponent<AudioSource>().pitch = enginePitch;
+  //      int gear = 0;
+  //      for (int i = 0; i < gearRatio.Length; i++)
+  //      {
+  //          if (gearRatio[i] > currentSpeed)
+  //          {
+  //              gear = i;
+  //              break;
+  //          }
+  //      }
+  //      float minGearValue = 0f;
+  //      float maxGearValue = 0f;
+  //      if (gear == 0)
+  //      {
+  //          minGearValue = 0;
+  //      }
+  //      else
+  //      {
+  //          minGearValue = gearRatio[gear - 1];
+  //      }
+  //      maxGearValue = gearRatio[gear];
+		//float modCurrentSpeed = currentSpeed / 10;
+		////sets the pitch based on gear and speed
+  //      float enginePitch = Mathf.Abs((modCurrentSpeed - maxGearValue) / (maxGearValue - minGearValue));
+  //      Debug.Log(enginePitch);
+		//if (enginePitch <= .5f) 
+		//{
+		//	enginePitch = .5f;
+		//}
+        //GetComponent<AudioSource>().pitch = enginePitch;
+        //Debug.Log(GetComponent<AudioSource>().pitch);
     }
 }

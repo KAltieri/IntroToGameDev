@@ -12,6 +12,7 @@ public class ChildLanceScript : MonoBehaviour {
 
 	void Start()
 	{
+        //inversion modifiers
 		if(!PlayerPrefs.HasKey("Inverse X"))
 		{
 			PlayerPrefs.SetInt ("Inverse X", 0);
