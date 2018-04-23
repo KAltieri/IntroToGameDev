@@ -29313,7 +29313,7 @@ MonoBehaviour:
   timeText: {fileID: 1721216104}
   pointText: {fileID: 1704623108}
   endTime: 300
-  endScore: 1
+  endScore: 200
   outer: {fileID: 572987767}
   inner: {fileID: 572987766}
   perfect: {fileID: 572987765}
